@@ -8,3 +8,4 @@ cc
 - [x] Compare number command
 - - Chatter chooses number that is then compared to a randomly generated number
 - ASCII image?
+- True or False decider
