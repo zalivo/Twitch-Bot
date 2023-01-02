@@ -4,6 +4,8 @@ import os
 import random
 
 load_dotenv()
+
+
 class Bot(commands.Bot):
     def __init__(self):
         super().__init__(token=os.environ['TWITCH_TOKEN'], prefix='?', initial_channels=['Riccc0_'])
@@ -29,14 +31,27 @@ class Bot(commands.Bot):
     # properly rename command nevim
     # fill list with Strings
     @commands.command()
-    async def nevim(self, ctx:commands.Context):
+    async def nevim(self, ctx: commands.Context):
         vtipne = ['nevim', 'vim']
         await ctx.send(f'{random.choice(vtipne)}')
 
-    # Link command
+    # GitHub repository command
     @commands.command()
-    async def link(self, ctx: commands.Context):
-        await ctx.send(f'google.com')
+    async def github(self, ctx: commands.Context):
+        await ctx.send('Twitch bot GitHub repository: ' + ' https://github.com/zalivo/Twitch-Bot')
+
+    # Comparing command
+    # arg is the number that chatter chooses and then the number is compared with random generated number
+    # TODO
+    # Choose different emotes for printouts
+    @commands.command()
+    async def compare(self, ctx: commands.Context, arg):
+        random_number = random.randint(1, 100)
+        if int(arg) < random_number:
+            await ctx.send('Vybrané číslo ' + str(arg) + ' je menší než ' + str(random_number) + ' PoroSad')
+        else:
+            await ctx.send('Vybrané číslo ' + str(arg) + ' je větší než ' + str(random_number) + ' :)')
+
 
 bot = Bot()
 bot.run()

@@ -5,5 +5,6 @@ cc
 - [x] Simple command
 - Count
 - Chat interaction
-- Printout random number from certain range
+- [x] Compare number command
+- - Chatter chooses number that is then compared to a randomly generated number
 - ASCII image?
