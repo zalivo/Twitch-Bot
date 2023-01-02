@@ -8,7 +8,7 @@ load_dotenv()
 
 class Bot(commands.Bot):
     def __init__(self):
-        super().__init__(token=os.environ['TWITCH_TOKEN'], prefix='?', initial_channels=['Riccc0_'])
+        super().__init__(token=os.environ['TWITCH_TOKEN'], prefix='?', initial_channels=['channel'])
 
     async def event_ready(self):
         print(f'Logged in as | {self.nick}')
