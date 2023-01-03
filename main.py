@@ -2,29 +2,34 @@ from dotenv import load_dotenv
 from twitchio.ext import commands
 import os
 import random
+import time
 
 load_dotenv()
 
 
 class Bot(commands.Bot):
     def __init__(self):
-        super().__init__(token=os.environ['TWITCH_TOKEN'], prefix='?', initial_channels=['channel'])
+        super().__init__(token=os.environ['TWITCH_TOKEN'], prefix='?', initial_channels=['Riccc0_'])
 
+    # Check if bot has established connection with the channel
     async def event_ready(self):
         print(f'Logged in as | {self.nick}')
         print(f'User id is | {self.user_id}')
 
+    # Listen to messages in the channel
     async def event_message(self, message):
         if message.echo:
             return
         print(message.content)
         await self.handle_commands(message)
 
-    # Simple commands
+    # Simple hello command
     @commands.command()
     async def hello(self, ctx: commands.Context):
         await ctx.send(f'Hello {ctx.author.name}!')
 
+    # Based copy pasta command
+    # ?? Bot cannot send two messages at once??
     @commands.command()
     async def based(self, ctx: commands.Context):
         #await ctx.send((' '.join(dir(ctx)))[:499])
@@ -56,6 +61,7 @@ class Bot(commands.Bot):
             await ctx.send('Vybrané číslo ' + str(arg) + ' je menší než ' + str(random_number) + ' PoroSad')
         else:
             await ctx.send('Vybrané číslo ' + str(arg) + ' je větší než ' + str(random_number) + ' :)')
+
 
 
 bot = Bot()
