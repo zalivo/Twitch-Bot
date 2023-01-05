@@ -2,7 +2,8 @@ from dotenv import load_dotenv
 from twitchio.ext import commands
 import os
 import random
-import time
+import json
+
 
 load_dotenv()
 
@@ -27,14 +28,6 @@ class Bot(commands.Bot):
     @commands.command()
     async def hello(self, ctx: commands.Context):
         await ctx.send(f'Hello {ctx.author.name}!')
-
-    # Based copy pasta command
-    # ?? Bot cannot send two messages at once??
-    @commands.command()
-    async def based(self, ctx: commands.Context):
-        #await ctx.send((' '.join(dir(ctx)))[:499])
-        await ctx.channel.send('Založeno? Založeno na čem? Na tvojem kokotovi? Prosím zavři hubu a používej slova normálně, ty stupidní troglodyte, myslíš si, že nám Bůh dal svobodu slova, jen abychom říkali náhodná slova, které nemají s tématem konverzace nic společného? Vždycky se ptáš, proč se s tebou nikdo nebaví, nebo proč s tebou nikdo nesdílí jejich názory, protože říkáš náhodné sračky jako poggers, based, cringe a když se je snažíš vysvětlit tak jen řekneš, že jsou vtipné. Jako cože?')
-        #await ctx.channel.send('Co si kurva myslíš, že je na tom vtipného, jako myslíš si, že se jen tak staneš stand-up komikem, který dostane bouřlivý potlesk, jen proto, že řekl "cum" na jevišti. ANI NÁHODOU IDIOTE. Takže prosím zavři hubu a používej slova, tak jak mají být používány debile.')
 
     # Function: printout random strings from array
     # TODO
@@ -62,7 +55,14 @@ class Bot(commands.Bot):
         else:
             await ctx.send('Vybrané číslo ' + str(arg) + ' je větší než ' + str(random_number) + ' :)')
 
+    # Printout list of commands that the bot knows
+    @commands.command()
+    async def help(self, ctx: commands.Context):
+        commands: str = "Seznam příkazů obsahuje: ?hello, ?based, ?nevim, ?github and ?compare"
+        await ctx.send(commands)
 
 
-bot = Bot()
-bot.run()
+if __name__ == "__main__":
+
+    bot = Bot()
+    bot.run()
